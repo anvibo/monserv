@@ -69,27 +69,3 @@ resource "docker_service" "traefik" {
       }
     }
 }
-
-resource "docker_service" "portainer" {
-    name = "portainer-service"
-
-    task_spec {
-        container_spec {
-            image = "portainer/portainer"
-
-            labels {
-                traefik.frontend.rule = "Host:portainer.mon.anvibo.com"
-                traefik.port = 9000
-            }
-
-            mounts = [
-                {
-                    target      = "/var/run/docker.sock"
-                    source      = "/var/run/docker.sock"
-                    type        = "bind"
-                },
-            ]
-        }
-        networks     = ["${docker_network.proxy.id}"]
-    }
-}

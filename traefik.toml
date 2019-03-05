@@ -1,6 +1,6 @@
 debug = false
 
-logLevel = "debug"
+logLevel = "info"
 defaultEntryPoints = ["https","http"]
 
 [entryPoints]
@@ -36,3 +36,5 @@ acmeLogging = true
 
 [acme.httpChallenge]
 entryPoint = "http"
+
+[accessLog]
