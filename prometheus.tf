@@ -1,7 +1,3 @@
-resource "docker_network" "proxy" {
-  name = "proxy"
-  driver = "overlay"
-}
 resource "docker_volume" "prometheus_data" {
   name = "prometheus_data"
 }
