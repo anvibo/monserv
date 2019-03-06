@@ -16,3 +16,7 @@ module "prometheus" {
   networks = ["${docker_network.proxy.id}"]
   traefik_network = "${docker_network.proxy.name}"
 }
+module "exporter" {
+  source = "services/node-exporter"
+  networks = ["${docker_network.proxy.id}"]
+}
