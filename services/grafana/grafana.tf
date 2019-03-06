@@ -20,7 +20,7 @@ resource "docker_service" "grafana" {
             labels {
                 traefik.frontend.rule = "Host:dashboard.mon.anvibo.com"
                 traefik.port = 3000
-                traefik.docker.network = "${var.traefik_network.name}"
+                traefik.docker.network = "${var.traefik_network}"
             }
 
          

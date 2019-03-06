@@ -28,7 +28,7 @@ resource "docker_service" "prometheus" {
             labels {
                 traefik.frontend.rule = "Host:prometheus.mon.anvibo.com"
                 traefik.port = 9090
-                traefik.docker.network = "${var.traefik_network.name}"
+                traefik.docker.network = "${var.traefik_network}"
             }
 
             configs = [
