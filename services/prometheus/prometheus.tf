@@ -2,7 +2,7 @@ resource "docker_volume" "prometheus_data" {
   name = "prometheus_data"
 }
 data "local_file" "prometheus-yml" {
-    filename = "prometheus.yml"
+    filename = "${path.module}/prometheus.yml"
 }
 resource "docker_config" "prometheus-yml" {
   name = "prometheus-yml-${replace(timestamp(),":", ".")}"

@@ -1,5 +1,5 @@
 data "local_file" "traefik-toml" {
-    filename = "traefik.toml"
+    filename = "${path.module}/traefik.toml"
 }
 
 resource "docker_config" "traefik-toml" {
