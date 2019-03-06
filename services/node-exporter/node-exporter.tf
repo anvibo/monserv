@@ -1,3 +1,6 @@
+variable "networks" {
+  type = "list"
+}
 resource "docker_service" "exporter" {
     name = "exporter-service"
 
@@ -31,6 +34,6 @@ resource "docker_service" "exporter" {
                 },
             ]
         }
-        networks     = ["${docker_network.proxy.id}"]
+        networks     = ["${var.networks}"]
     }
 }
