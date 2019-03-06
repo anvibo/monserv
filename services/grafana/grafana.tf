@@ -35,6 +35,6 @@ resource "docker_service" "grafana" {
                 
             ]
         }
-        networks     = "${var.networks}"
+        networks     = ["${var.networks}"]
     }
 }

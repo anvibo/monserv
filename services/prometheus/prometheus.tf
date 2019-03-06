@@ -55,6 +55,6 @@ resource "docker_service" "prometheus" {
                 
             ]
         }
-        networks     = "${var.networks}"
+        networks     = ["${var.networks}"]
     }
 }

@@ -54,7 +54,7 @@ resource "docker_service" "traefik" {
                 
             ]
         }
-        networks     = "${var.networks}"
+        networks     = ["${var.networks}"]
     }
 
     endpoint_spec {
