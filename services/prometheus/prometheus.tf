@@ -1,3 +1,6 @@
+variable "networks" {
+  type = "list"
+}
 resource "docker_volume" "prometheus_data" {
   name = "prometheus_data"
 }
@@ -50,6 +53,6 @@ resource "docker_service" "prometheus" {
                 
             ]
         }
-        networks     = ["${docker_network.proxy.id}"]
+        networks     = "${var.networks}"
     }
 }

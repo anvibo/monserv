@@ -1,3 +1,7 @@
+variable "networks" {
+  type = "list"
+}
+
 resource "docker_volume" "grafana_data" {
   name = "grafana_data"
 }
@@ -27,6 +31,6 @@ resource "docker_service" "grafana" {
                 
             ]
         }
-        networks     = ["${docker_network.proxy.id}"]
+        networks     = "${var.networks}"
     }
 }

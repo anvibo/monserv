@@ -1,3 +1,6 @@
+variable "networks" {
+  type = "list"
+}
 data "local_file" "traefik-toml" {
     filename = "${path.module}/traefik.toml"
 }
@@ -12,10 +15,6 @@ resource "docker_config" "traefik-toml" {
   }
 }
 
-resource "docker_network" "proxy" {
-  name = "proxy"
-  driver = "overlay"
-}
 resource "docker_volume" "traefik_acme" {
   name = "traefik_acme"
 }
@@ -55,7 +54,7 @@ resource "docker_service" "traefik" {
                 
             ]
         }
-        networks     = ["${docker_network.proxy.id}"]
+        networks     = "${var.networks}"
     }
 
     endpoint_spec {
