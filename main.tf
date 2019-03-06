@@ -9,8 +9,10 @@ module "traefik" {
 module "grafana" {
   source = "services/grafana"
   networks = ["${docker_network.proxy.id}"]
+  traefik_network = "${docker_network.proxy.name}"
 }
 module "prometheus" {
   source = "services/prometheus"
   networks = ["${docker_network.proxy.id}"]
+  traefik_network = "${docker_network.proxy.name}"
 }

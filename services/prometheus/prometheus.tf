@@ -1,6 +1,8 @@
 variable "networks" {
   type = "list"
 }
+variable "traefik_network" {
+}
 resource "docker_volume" "prometheus_data" {
   name = "prometheus_data"
 }
@@ -26,7 +28,7 @@ resource "docker_service" "prometheus" {
             labels {
                 traefik.frontend.rule = "Host:prometheus.mon.anvibo.com"
                 traefik.port = 9090
-                traefik.docker.network = "${docker_network.proxy.name}"
+                traefik.docker.network = "${var.traefik_network.name}"
             }
 
             configs = [

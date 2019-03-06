@@ -2,6 +2,10 @@ variable "networks" {
   type = "list"
 }
 
+variable "traefik_network" {
+}
+
+
 resource "docker_volume" "grafana_data" {
   name = "grafana_data"
 }
@@ -16,7 +20,7 @@ resource "docker_service" "grafana" {
             labels {
                 traefik.frontend.rule = "Host:dashboard.mon.anvibo.com"
                 traefik.port = 3000
-                traefik.docker.network = "${docker_network.proxy.name}"
+                traefik.docker.network = "${var.traefik_network.name}"
             }
 
          
