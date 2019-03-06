@@ -1,9 +1,9 @@
 module "traefik" {
   source = "services/traefik"
 }
-module "traefik" {
+module "grafana" {
   source = "services/grafana"
 }
-module "traefik" {
+module "prometheus" {
   source = "services/prometheus"
 }
