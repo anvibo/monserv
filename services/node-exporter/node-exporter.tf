@@ -9,6 +9,9 @@ resource "docker_service" "exporter" {
             image = "prom/node-exporter"
 
             command = [
+                "/bin/node_exporter"
+            ]
+            args = [
                 "--path.procfs=/host/proc",
                 "--path.sysfs=/host/sys",
                 "^/(sys|proc|dev|host|etc|rootfs/var/lib/docker/containers|rootfs/var/lib/docker/overlay2|rootfs/run/docker/netns|rootfs/var/lib/docker/aufs)($$|/)"
