@@ -1,6 +1,8 @@
 variable "networks" {
   type = "list"
 }
+variable "traefik_network" {
+}
 data "local_file" "traefik-toml" {
     filename = "${path.module}/traefik.toml"
 }
@@ -28,6 +30,7 @@ resource "docker_service" "traefik" {
             labels {
                 traefik.frontend.rule = "Host:traefik.mon.anvibo.com"
                 traefik.port = 8080
+                traefik.docker.network = "${var.traefik_network}"
             }
 
             configs = [

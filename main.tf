@@ -5,6 +5,7 @@ resource "docker_network" "proxy" {
 module "traefik" {
   source = "services/traefik"
   networks = ["${docker_network.proxy.id}"]
+  traefik_network = "${docker_network.proxy.name}"
 }
 module "grafana" {
   source = "services/grafana"
