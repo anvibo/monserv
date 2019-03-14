@@ -15,10 +15,10 @@ defaultEntryPoints = ["https","http"]
 [retry]
 
 [docker]
-swarmMode = false
-endpoint = "unix:///var/run/docker.sock"
-domain = "${domain}"
+swarmMode = true
+endpoint = "tcp://127.0.0.1:2376"
 watch = true
+exposedbydefault = false
 
 [api]
 dashboard = true
