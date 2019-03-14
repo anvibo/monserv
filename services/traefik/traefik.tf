@@ -5,7 +5,7 @@ variable "traefik_network" {
 }
 variable "acme_email" {
 }
-variable "domain" { 
+variable "url" { 
 }
 data "local_file" "traefik-toml" {
     filename = "${path.module}/traefik.toml"
@@ -41,7 +41,7 @@ resource "docker_service" "traefik" {
             image = "traefik"
 
             labels {
-                traefik.frontend.rule = "Host:${var.domain}"
+                traefik.frontend.rule = "Host:${var.url}"
                 traefik.port = 8080
                 traefik.docker.network = "${var.traefik_network}"
                 }

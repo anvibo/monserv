@@ -4,7 +4,9 @@ variable "networks" {
 
 variable "traefik_network" {
 }
-
+variable "url" {
+  
+}
 
 resource "docker_volume" "grafana_data" {
   name = "grafana_data"
@@ -18,7 +20,7 @@ resource "docker_service" "grafana" {
             image = "grafana/grafana"
 
             labels {
-                traefik.frontend.rule = "Host:dashboard.mon.anvibo.com"
+                traefik.frontend.rule = "Host:${var.url}"
                 traefik.port = 3000
                 traefik.docker.network = "${var.traefik_network}"
             }

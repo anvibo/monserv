@@ -9,6 +9,10 @@ resource "docker_volume" "prometheus_data" {
 data "local_file" "prometheus-yml" {
     filename = "${path.module}/prometheus.yml"
 }
+variable "url" {
+  
+}
+
 resource "docker_config" "prometheus-yml" {
   name = "prometheus-yml-${replace(timestamp(),":", ".")}"
   data = "${base64encode(data.local_file.prometheus-yml.content)}"
@@ -26,7 +30,7 @@ resource "docker_service" "prometheus" {
             image = "prom/prometheus"
 
             labels {
-                traefik.frontend.rule = "Host:prometheus.mon.anvibo.com"
+                traefik.frontend.rule = "Host:${var.url}"
                 traefik.port = 9090
                 traefik.docker.network = "${var.traefik_network}"
             }
