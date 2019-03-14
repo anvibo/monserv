@@ -16,7 +16,7 @@ defaultEntryPoints = ["https","http"]
 
 [docker]
 swarmMode = true
-endpoint = "tcp://127.0.0.1:2376"
+endpoint = "unix:///var/run/docker.sock"
 watch = true
 exposedbydefault = false
 
