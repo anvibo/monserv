@@ -36,15 +36,15 @@ resource "docker_volume" "traefik_acme" {
 resource "docker_service" "traefik" {
     name = "traefik-service"
 
-    labels {
-        traefik.frontend.rule = "Host:traefik.${var.domain}"
-        traefik.port = 8080
-        traefik.docker.network = "${var.traefik_network}"
-    }
-
     task_spec {
         container_spec {
             image = "traefik"
+
+            labels {
+                traefik.frontend.rule = "Host:traefik.${var.domain}"
+                traefik.port = 8080
+                traefik.docker.network = "${var.traefik_network}"
+                }
 
             configs = [
                 {
