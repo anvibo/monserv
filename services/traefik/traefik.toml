@@ -18,7 +18,6 @@ defaultEntryPoints = ["https","http"]
 swarmMode = false
 endpoint = "unix:///var/run/docker.sock"
 watch = true
-exposedbydefault = false
 
 [api]
 dashboard = true

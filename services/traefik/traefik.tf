@@ -37,14 +37,14 @@ resource "docker_service" "traefik" {
     name = "traefik-service"
 
     task_spec {
-        labels {
-            traefik.frontend.rule = "Host:traefik.${var.domain}"
-            traefik.port = 8080
-            traefik.docker.network = "${var.traefik_network}"
-            }
-
         container_spec {
             image = "traefik"
+
+            labels {
+                traefik.frontend.rule = "Host:traefik.${var.domain}"
+                traefik.port = 8080
+                traefik.docker.network = "${var.traefik_network}"
+                }
 
             configs = [
                 {
