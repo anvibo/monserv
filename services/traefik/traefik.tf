@@ -15,7 +15,6 @@ data "template_file" "traefik-toml" {
     template = "${file("${path.module}/traefik.toml")}"
 
     vars = {
-        domain = "${var.domain}"
         acme_email = "${var.acme_email}"
   }
 }
