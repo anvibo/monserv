@@ -3,13 +3,26 @@ variable "networks" {
 }
 variable "traefik_network" {
 }
+variable "acme_email" {
+}
+variable "domain" { 
+}
 data "local_file" "traefik-toml" {
     filename = "${path.module}/traefik.toml"
 }
 
+data "template_file" "traefik-toml" {
+    template = "${file("${path.module}/traefik.toml")}"
+
+    vars = {
+        domain = "${var.domain}"
+        acme_email = "${var.acme_email}"
+  }
+}
+
 resource "docker_config" "traefik-toml" {
   name = "traefik-toml-${replace(timestamp(),":", ".")}"
-  data = "${base64encode(data.local_file.traefik-toml.content)}"
+  data = "${base64encode(data.template_file.traefik-toml.rendered)}"
 
   lifecycle {
     ignore_changes = ["name"]
@@ -28,7 +41,7 @@ resource "docker_service" "traefik" {
             image = "traefik"
 
             labels {
-                traefik.frontend.rule = "Host:traefik.mon.anvibo.com"
+                traefik.frontend.rule = "Host:traefik.${var.domain}"
                 traefik.port = 8080
                 traefik.docker.network = "${var.traefik_network}"
             }
