@@ -24,7 +24,7 @@ watch = true
 dashboard = true
 
 [forwardingTimeouts]
-dialTimeout = "20s"
+dialTimeout = "30s"
 
 [acme]
 storage = "/etc/traefik/acme/acme.json"
