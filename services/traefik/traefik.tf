@@ -41,7 +41,7 @@ resource "docker_service" "traefik" {
             image = "traefik"
 
             labels {
-                traefik.frontend.rule = "Host:traefik.${var.domain}"
+                traefik.frontend.rule = "Host:${var.domain}"
                 traefik.port = 8080
                 traefik.docker.network = "${var.traefik_network}"
                 }

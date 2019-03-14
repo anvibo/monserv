@@ -6,7 +6,7 @@ module "traefik" {
   source = "services/traefik"
   networks = ["${docker_network.proxy.id}"]
   traefik_network = "${docker_network.proxy.name}"
-  domain = "monitor.anvibo.com"
+  domain = "traefik.monitor.anvibo.com"
   acme_email = "ssl@anvibo.com"
 }
 module "grafana" {
