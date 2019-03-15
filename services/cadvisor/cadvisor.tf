@@ -7,7 +7,7 @@ resource "docker_service" "cadvisor" {
     task_spec {
         container_spec {
             image = "google/cadvisor"
-            hostname = "{{.Node.Hostname}}"
+            hostname = "monserv10"
             command = [
                 "/bin/node_exporter"
             ]
