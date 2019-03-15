@@ -31,12 +31,15 @@ resource "docker_config" "traefik-toml" {
   }
 }
 
-resource "docker_volume" "traefik_acme" {
+resource "docker_volume" "traefik_acme1" {
   name = "traefik_acme"
   driver = "local-persist"
   driver_opts = {
       "mountpoint" = "${var.acme_volume_mountpoint}"
   }
+}
+resource "docker_volume" "traefik_acme" {
+  name = "traefik_acme"
 }
 resource "docker_service" "traefik" {
     name = "traefik-service"
