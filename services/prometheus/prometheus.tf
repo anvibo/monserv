@@ -3,8 +3,15 @@ variable "networks" {
 }
 variable "traefik_network" {
 }
+variable "vol1_mountpoint" {
+  
+}
 resource "docker_volume" "prometheus_data" {
   name = "prometheus_data"
+  driver = "local-persist"
+  driver_opts = {
+      "mountpoint" = "${var.vol1_mountpoint}"
+  }
 }
 data "local_file" "prometheus-yml" {
     filename = "${path.module}/prometheus.yml"

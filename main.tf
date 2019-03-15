@@ -15,12 +15,14 @@ module "grafana" {
   networks = ["${docker_network.proxy.id}"]
   traefik_network = "${docker_network.proxy.name}"
   url = "dashboard.monitor.anvibo.com"
+  vol1_mountpoint = "/storage/hdd1/monserv10_prometheus_data"
 }
 module "prometheus" {
   source = "services/prometheus"
   networks = ["${docker_network.proxy.id}"]
   traefik_network = "${docker_network.proxy.name}"
   url = "prometheus.monitor.anvibo.com"
+  vol1_mountpoint = "/storage/hdd1/monserv10_prometheus_data"
 }
 module "exporter" {
   source = "services/node-exporter"

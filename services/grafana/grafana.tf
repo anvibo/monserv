@@ -7,11 +7,17 @@ variable "traefik_network" {
 variable "url" {
   
 }
+variable "vol1_mountpoint" {
+  
+}
 
 resource "docker_volume" "grafana_data" {
   name = "grafana_data"
+  driver = "local-persist"
+  driver_opts = {
+      "mountpoint" = "${var.vol1_mountpoint}"
+  }
 }
-
 resource "docker_service" "grafana" {
     name = "grafana-service"
 
