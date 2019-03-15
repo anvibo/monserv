@@ -7,10 +7,13 @@ variable "acme_email" {
 }
 variable "url" { 
 }
+variable "acme_volume_mountpoint" {
+  
+}
+
 data "local_file" "traefik-toml" {
     filename = "${path.module}/traefik.toml"
 }
-
 data "template_file" "traefik-toml" {
     template = "${file("${path.module}/traefik.toml")}"
 
@@ -18,7 +21,6 @@ data "template_file" "traefik-toml" {
         acme_email = "${var.acme_email}"
   }
 }
-
 resource "docker_config" "traefik-toml" {
   name = "traefik-toml-${replace(timestamp(),":", ".")}"
   data = "${base64encode(data.template_file.traefik-toml.rendered)}"
@@ -31,6 +33,10 @@ resource "docker_config" "traefik-toml" {
 
 resource "docker_volume" "traefik_acme" {
   name = "traefik_acme"
+  driver = "local-persist"
+  driver_opts = {
+      "mountpoint" = "${var.acme_volume_mountpoint}"
+  }
 }
 resource "docker_service" "traefik" {
     name = "traefik-service"

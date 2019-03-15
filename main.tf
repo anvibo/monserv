@@ -8,6 +8,7 @@ module "traefik" {
   traefik_network = "${docker_network.proxy.name}"
   url = "traefik.monitor.anvibo.com"
   acme_email = "ssl@anvibo.com"
+  acme_volume_mountpoint = "/storage/gcs1/monserv10_traefik_acme"
 }
 module "grafana" {
   source = "services/grafana"
