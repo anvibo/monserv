@@ -26,3 +26,11 @@ module "exporter" {
   source = "services/node-exporter"
   networks = ["${docker_network.proxy.id}"]
 }
+
+module "consul" {
+  source = "services/consul"
+  networks = ["${docker_network.proxy.id}"]
+  traefik_network = "${docker_network.proxy.name}"
+  url = "consul.monitor.anvibo.com"
+  consul_data_mountpoint = "/storage/gcs1/monserv10_consul_data"
+}
