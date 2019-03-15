@@ -28,3 +28,7 @@ module "exporter" {
   source = "services/node-exporter"
   networks = ["${docker_network.proxy.id}"]
 }
+module "cadvisor" {
+  source = "services/cadvisor"
+  networks = ["${docker_network.proxy.id}"]
+}
