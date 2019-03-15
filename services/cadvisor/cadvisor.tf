@@ -7,14 +7,8 @@ resource "docker_service" "cadvisor" {
     task_spec {
         container_spec {
             image = "google/cadvisor"
-            hostname = "monserv10"
-            command = [
-                "/bin/node_exporter"
-            ]
-            args = [
-                "--path.procfs=/host/proc",
-                "--path.sysfs=/host/sys"
-            ]
+            hostname = "{{.Node.Hostname}}"
+        
             mounts = [
                 {
                     target      = "/var/run"
