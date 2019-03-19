@@ -3,7 +3,7 @@ resource "docker_network" "proxy" {
   driver = "overlay"
 }
 module "traefik" {
-  source = "services/traefik"
+  source = "anvibo/traefik/docker"
   networks = ["${docker_network.proxy.id}"]
   traefik_network = "${docker_network.proxy.name}"
   url = "traefik.mon.anvibo.com"
@@ -11,24 +11,24 @@ module "traefik" {
   acme_volume_mountpoint = "/storage/hdd1/monserv10_traefik_acme"
 }
 module "grafana" {
-  source = "services/grafana"
+  source = "anvibo/grafana/docker"
   networks = ["${docker_network.proxy.id}"]
   traefik_network = "${docker_network.proxy.name}"
   url = "dashboard.mon.anvibo.com"
   vol1_mountpoint = "/storage/hdd1/monserv10_grafana_data"
 }
 module "prometheus" {
-  source = "services/prometheus"
+  source = "anvibo/prometheus/docker"
   networks = ["${docker_network.proxy.id}"]
   traefik_network = "${docker_network.proxy.name}"
   url = "prometheus.mon.anvibo.com"
   vol1_mountpoint = "/storage/hdd1/monserv10_prometheus_data"
 }
 module "exporter" {
-  source = "services/node-exporter"
+  source = "anvibo/node-exporter/docker"
   networks = ["${docker_network.proxy.id}"]
 }
 module "cadvisor" {
-  source = "services/cadvisor"
+  source = "anvibo/cadvisor/docker"
   networks = ["${docker_network.proxy.id}"]
 }
