@@ -37,6 +37,6 @@ module "jenkins" {
   source  = "anvibo/jenkins/docker"
   networks = ["${docker_network.proxy.id}"]
   traefik_network = "${docker_network.proxy.name}"
-  url = "prometheus.mon.anvibo.com"
+  url = "jenkins.mon.anvibo.com"
   jenkins_data_mount = "/storage/hdd1/jenkins_data"
 }
