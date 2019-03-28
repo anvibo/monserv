@@ -2,11 +2,11 @@ terraform {
   backend "gcs" {
     bucket = "anvibo-terraform-states"
     prefix = "monaps10/vm"
-    credentials = "../../../creds/anvibo-gcp-f5f9b5100748.json"
+    credentials = "../../creds/anvibo-gcp-f5f9b5100748.json"
   }
 }
 provider "google" {
-  credentials = "${file("../../../creds/anvibo-gcp-f5f9b5100748.json")}"
+  credentials = "${file("../../creds/anvibo-gcp-f5f9b5100748.json")}"
   project     = "anvibo-gcp"
   region      = "us-central1"
   zone        = "us-central1-a"
@@ -40,4 +40,5 @@ resource "google_compute_disk" "hdd-1" {
 resource "google_compute_attached_disk" "default" {
     disk = "${google_compute_disk.hdd-1.id}"
     instance = "${module.monaps10.instance_id}"
+    depends_on = ["google_compute_disk.hdd-1", "monaps10"]
 }
