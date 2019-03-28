@@ -40,5 +40,5 @@ resource "google_compute_disk" "hdd-1" {
 resource "google_compute_attached_disk" "default" {
     disk = "${google_compute_disk.hdd-1.id}"
     instance = "${module.monaps10.instance_id}"
-    depends_on = ["google_compute_disk.hdd-1", "monaps10"]
+    depends_on = ["google_compute_disk.hdd-1"]
 }
