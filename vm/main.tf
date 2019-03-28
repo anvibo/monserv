@@ -2,11 +2,11 @@ terraform {
   backend "gcs" {
     bucket = "anvibo-terraform-states"
     prefix = "monaps10/vm"
-    credentials = "../../creds/anvibo-gcp-f5f9b5100748.json"
+    credentials = "../../../creds/anvibo-gcp-f5f9b5100748.json"
   }
 }
 provider "google" {
-  credentials = "${file("../../creds/anvibo-gcp-f5f9b5100748.json")}"
+  credentials = "${file("../../../creds/anvibo-gcp-f5f9b5100748.json")}"
   project     = "anvibo-gcp"
   region      = "us-central1"
   zone        = "us-central1-a"
