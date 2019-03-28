@@ -47,6 +47,6 @@ mv terraform /usr/local/bin/
 
 #deploying services
 git clone https://github.com/anvibo/monserv.git
-cd monserv
+cd monserv/services
 terraform init
 terraform apply -auto-approve 
