@@ -46,7 +46,7 @@ unzip terraform_0.11.11_linux_amd64.zip
 mv terraform /usr/local/bin/
 
 #deploying services
-git clone https://github.com/anvibo/monserv.git
+git clone https://github.com/bfrunza/monserv.git
 cd monserv/services
 terraform init
 terraform apply -auto-approve 
